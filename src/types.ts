@@ -15,6 +15,12 @@ export type CellBase<Value = any> = {
   className?: string;
   /** The value of the cell */
   value: Value;
+  /** Row span of the cell */
+  rowSpan?: number;
+  /** Column span of the cell */
+  colSpan?: number;
+  /** CSS style of the cell */
+  style?: object;
   /** Custom component to render when the cell is edited, if not defined would default to the component defined for the Spreadsheet */
   DataEditor?: DataEditorComponent<CellBase<Value>>;
   /** Custom component to render when the cell is viewed, if not defined would default to the component defined for the Spreadsheet */

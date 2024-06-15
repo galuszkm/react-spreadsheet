@@ -81,6 +81,9 @@ export const Cell: React.FC<Types.CellComponentProps> = ({
       onMouseOver={handleMouseOver}
       onMouseDown={handleMouseDown}
       tabIndex={0}
+      style={data?.style ? data.style : {}}
+      rowSpan={data?.rowSpan ?? 1}
+      colSpan={data?.colSpan ?? 1}
     >
       <DataViewer
         row={row}
