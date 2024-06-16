@@ -82,6 +82,11 @@ export type Props<CellType extends Types.CellBase> = {
   hideColumnIndicators?: boolean;
   /** The selected cells in the worksheet. */
   selected?: Selection;
+  /**
+   * If set to true, the blur action is prevented.
+   * @defaultValue `false`.
+   */
+  preventBlur?: boolean;
   // Custom Components
   /** Component rendered above each column. */
   ColumnIndicator?: Types.ColumnIndicatorComponent;
@@ -136,6 +141,7 @@ const Spreadsheet = <CellType extends Types.CellBase>(
     rowLabels,
     hideColumnIndicators,
     hideRowIndicators,
+    preventBlur,
     onKeyDown,
     Table = DefaultTable,
     Row = DefaultRow,
@@ -406,7 +412,10 @@ const Spreadsheet = <CellType extends Types.CellBase>(
        * Focus left self, Not triggered when swapping focus between children
        * @see https://reactjs.org/docs/events.html#detecting-focus-entering-and-leaving
        */
-      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+      if (
+        !event.currentTarget.contains(event.relatedTarget as Node) &&
+        preventBlur !== true
+      ) {
         blur();
       }
     },
